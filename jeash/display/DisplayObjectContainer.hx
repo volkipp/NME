@@ -323,10 +323,10 @@ class DisplayObjectContainer extends InteractiveObject
 	}
 
 	override private function jeashGetObjectUnderPoint(point:Point) {
-		var l = jeashChildren.length-1;
-		for (i in 0...jeashChildren.length) {
-			var result = jeashChildren[l-i].jeashGetObjectUnderPoint(point);
 		if (!jeashCombinedVisible) return null; 
+		var i:Int = jeashChildren.length;
+		while(i-->0) {
+			var result = jeashChildren[i].jeashGetObjectUnderPoint(point);
 			if (result != null)
 				return mouseChildren ? result : this;
 		}
@@ -342,9 +342,9 @@ class DisplayObjectContainer extends InteractiveObject
 	}
 
 	function jeashGetObjectsUnderPoint(point:Point, stack:Array<DisplayObject>) {
-		var l = jeashChildren.length-1;
-		for (i in 0...jeashChildren.length) {
-			var result = jeashChildren[l-i].jeashGetObjectUnderPoint(point);
+		var i:Int = jeashChildren.length;
+		while(i-->0) {
+			var result = jeashChildren[i].jeashGetObjectUnderPoint(point);
 			if (result != null)
 				stack.push(result);
 		}
