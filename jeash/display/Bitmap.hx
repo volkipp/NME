@@ -125,6 +125,11 @@ class Bitmap extends jeash.display.DisplayObject
 	}
 
 	override public function jeashGetObjectUnderPoint(point:Point):DisplayObject {
-		return null; // Bitmaps should not capture mouse events. //VKA
+		if (!visible) return null; 
+		else if (this.bitmapData != null) {
+			var local = globalToLocal(point);
+			if (local.x < 0 || local.y < 0 || local.x > width || local.y > height) return null; else return cast this;
+		}
+		else return super.jeashGetObjectUnderPoint(point);
 	}
 }
